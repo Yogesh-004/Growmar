@@ -1,0 +1,31 @@
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Local data: keep the directory placeholders, not dataset files
+/data/raw/*
+!/data/raw/README.txt
+/data/processed/*
+!/data/processed/.gitkeep
+
+# Model and transient artifacts
+/artifacts/*
+!/artifacts/.gitkeep
+*.joblib
+*.pkl
+*.pickle
+*.egg-info/
+
+# Record-level audit details: row references + observed values stay local
+# (aggregate summaries such as invalid_values.csv remain committed).
+task1_data_audit/reports/generated/outlier_details.csv
+task1_data_audit/reports/generated/data_quality_issue_details.csv
+
+# Secrets
+.env
+.env.*
+!.env.example

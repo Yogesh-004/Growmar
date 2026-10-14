@@ -1,0 +1,12 @@
+column,dtype,role_provisional,row_count,missing_count,missing_pct,non_missing_count,unique_non_missing,audit_decision
+resignation_date,datetime64[ns],potentially post-outcome (confirm prediction-time availability),2389,2068,86.5634156550858,321,296,
+exit_date,datetime64[ns],potentially post-outcome (confirm prediction-time availability),2389,2040,85.39137714524905,349,307,
+exit_interview_done,object,potentially post-outcome (confirm prediction-time availability),2389,2040,85.39137714524905,349,2,
+exit_reason,object,potentially post-outcome (confirm prediction-time availability),2389,2040,85.39137714524905,349,11,
+fnf_settlement_amount,float64,potentially post-outcome (confirm prediction-time availability),2389,2040,85.39137714524905,349,349,
+months_since_last_promotion,float64,numeric feature (provisional),2389,1459,61.07157806613645,930,94,
+last_engagement_score,float64,numeric feature (provisional),2389,528,22.101297614064464,1861,38,
+last_raise_pct,float64,numeric feature (provisional),2389,202,8.455420678107995,2187,184,
+last_performance_rating,float64,numeric feature (provisional),2389,182,7.618250313938886,2207,5,
+commute_distance_km,float64,numeric feature (provisional),2389,55,2.3022185014650485,2334,372,
+highest_education,object,categorical/text feature (provisional),2389,15,0.6278777731268314,2374,27,

@@ -1,0 +1,9 @@
+services:
+  audit:
+    build: .
+    image: aura-task1-audit:local
+    working_dir: /workspace
+    ports:
+      - "127.0.0.1:8888:8888"
+    volumes:
+      - ./:/workspace

@@ -1,0 +1,5 @@
+check,column,count
+exact_duplicate_rows,<all columns>,0
+duplicate_non_missing_identifier_values,employee_id,6
+duplicate_non_missing_identifier_values,row_id,0
+duplicate_business_records_excl_row_id,<all columns except row_id>,6

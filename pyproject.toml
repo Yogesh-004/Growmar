@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aura-workforce-features"
+version = "1.0.0"
+description = "Reusable, versioned preprocessing pipeline for Growmar Aura Workforce (Phase 1, Task 2)"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "pandas>=2.2,<3.0",
+    "numpy>=1.26,<3.0",
+    "scikit-learn>=1.3,<1.6",
+    "joblib>=1.3",
+    "openpyxl>=3.1,<4.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["task2_feature_pipeline/src", "task1_data_audit/src"]
+include = ["features*", "audit*"]

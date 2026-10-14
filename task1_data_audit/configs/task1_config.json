@@ -1,0 +1,54 @@
+{
+  "dataset_file": "data/raw/CortexHR_AI_ML_Dataset.xlsx",
+  "sheet_name": "attrition_dataset",
+  "target_column_candidates": [
+    "left_within_12m",
+    "voluntary_left_within_12m",
+    "attrition_label",
+    "attrition",
+    "attrition_status",
+    "employee_attrition",
+    "left_company",
+    "is_attrition",
+    "target"
+  ],
+  "positive_target_values": [
+    "1",
+    "yes",
+    "y",
+    "true",
+    "left",
+    "leaver",
+    "leavers",
+    "attrited",
+    "exited",
+    "terminated"
+  ],
+  "outlier_columns": [
+    "annual_fixed_pay",
+    "avg_hours_worked_3m",
+    "tenure_months",
+    "salary",
+    "annual_salary",
+    "hours_worked"
+  ],
+  "salary_column": "annual_fixed_pay",
+  "hours_column": "avg_hours_worked_3m",
+  "tenure_column": "tenure_months",
+  "leakage_candidate_columns": [
+    "exit_date",
+    "resignation_date",
+    "exit_reason",
+    "fnf_settlement_amount",
+    "exit_interview_done",
+    "final_settlement",
+    "final_settlement_amount"
+  ],
+  "id_candidate_columns": [
+    "employee_id",
+    "employeeid",
+    "row_id",
+    "record_id"
+  ],
+  "output_dir": "task1_data_audit/reports/generated"
+}

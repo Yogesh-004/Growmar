@@ -1,0 +1,6 @@
+column,suspected_mechanism,risk_level,exclude_from_model,reason,confirmation_needed
+exit_date,Post-outcome date recorded only after leaving,Confirmed risk,Exclude,Present only when the outcome occurred; unknowable at prediction time.,Confirm prediction timestamp precedes any exit recording.
+resignation_date,Post-outcome date recorded only after resigning,Confirmed risk,Exclude,Present only for voluntary leavers; directly reveals the outcome.,Confirm prediction timestamp precedes resignation.
+exit_reason,Free-text/category recorded at or after exit,Confirmed risk,Exclude,Recorded only when someone left; missing otherwise.,Confirm no pre-exit proxy with the same name is intended.
+exit_interview_done,Exit-interview flag recorded after exit,Confirmed risk,Exclude,Only defined for leavers; missing for stayers.,Confirm interview timing relative to prediction date.
+fnf_settlement_amount,Final settlement amount paid after exit,Confirmed risk,Exclude,Full-and-final payout exists only post-exit.,Confirm payroll timing; never use as input.
