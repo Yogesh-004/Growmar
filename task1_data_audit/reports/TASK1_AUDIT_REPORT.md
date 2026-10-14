@@ -52,7 +52,7 @@ Pay flags are mostly legitimate high earners; hours cluster near 8.7 with one im
 
 ## 5. Attrition and class imbalance
 
-Our working target is `left_within_12m`: 1 means the employee left within 12 months after the observation date. 349 of 2,389 employees left (14.61%); 2,040 stayed. Roughly one in seven employees left. A model that always predicts 'stayed' would look about 85.4% accurate while finding zero leavers — so accuracy alone would mislead us, and later evaluation must use recall, precision and ranking quality with stratified splits. `left_within_12m` is our working target only; formal Task 3 approval is still open.
+Our working target is `left_within_12m`: 1 means the employee left within 12 months after the observation date. 349 of 2,389 employees left (14.61%); 2,040 stayed. Roughly one in seven employees left. A model that always predicts 'stayed' would look about 85.4% accurate while finding zero leavers — so accuracy alone would mislead us, and later evaluation must use recall, precision and ranking quality with stratified splits. `left_within_12m` was our working target at audit time; the project owner has since confirmed it as the Task 3 target.
 
 ![Target distribution](generated/figures/target_distribution.png)
 
@@ -79,7 +79,7 @@ Leakage means letting the model peek at information that reveals the answer or w
 | D02 | missingness | Impute commute_distance_km, last_performance_rating, highest_education with train-fitted imputers; investigate engagement missingness | Low-to-moderate missingness (0.6-7.6%) without structural pattern; engagement at 22% needs source check. | Median/mode imputation fitted on train; add missingness indicator for engagement; document rates. | Binding Task 2 rule |
 | D03 | missingness | Do not drop any column for missingness alone; never drop rows except for missing target | Even 61% and 85% missing columns have business meaning (no-event vs post-event). | Keep columns through Task 2 design; drop rows only if the target label itself were missing. | Binding Task 2 rule |
 | D04 | outliers | Retain all statistical outliers through Task 1; flag and investigate before any Task 2 treatment | IQR and z-score flag legitimate extremes in skewed pay/hours/tenure data. | No deletion/capping in audit; in Task 2 prefer robust scaling and flagged-indicator columns; cap only with documented HR limits. | Binding Task 2 rule |
-| D05 | target | Use left_within_12m as the primary Task 3 label after confirming semantics | Binary 0/1 field with documented leaver meaning; class imbalance requires stratified handling. | Stratified splits; report precision/recall/AUC rather than accuracy alone. | Working target - Task 3 confirmation needed |
+| D05 | target | Use left_within_12m as the Task 3 label (confirmed by project owner; working target at audit time) | Binary 0/1 field with documented leaver meaning; class imbalance requires stratified handling. | Stratified splits; report precision/recall/AUC rather than accuracy alone. | Confirmed by project owner |
 | D06 | leakage | Exclude all post-outcome exit/settlement fields from model inputs | These fields exist only after leaving and would not be known at prediction time. | Drop exit_date, resignation_date, exit_reason, exit_interview_done, fnf_settlement_amount before training. | Binding Task 2 rule (exclude) |
 | D07 | leakage | Exclude identifiers and the non-primary outcome label from features | IDs harm generalization and privacy; the second label reveals the same event. | Drop row_id/employee_id and the alternative target column from X. | Binding Task 2 rule (exclude) |
 | D08 | duplicates | Keep all rows in Task 1; resolve repeated employee identifiers in Task 2 with a documented key rule | No full-row duplicates, but business-record duplicates exist once the technical row_id is excluded; repeated employee IDs need timeline-aware dedup, not deletion. | Define one-row-per-employee rule (e.g. latest observation; business key = all fields except row_id) before modelling; keep audit trail. | Binding Task 2 rule |
@@ -92,7 +92,7 @@ The table above is the handoff: Task 2 must implement these rules in a reusable,
 
 ## 9. Open questions
 
-Working target vs formal Task 3 approval; canonical location list; causes of negatives, out-of-range shares, attendance above 1 and pre-observation resignations; department prior-rate window; whether engagement gaps are systematic; `comp_ratio` definition. All need HR/source confirmation.
+Target confirmation — resolved (`left_within_12m` confirmed by the project owner for Task 3); canonical location list; causes of negatives, out-of-range shares, attendance above 1 and pre-observation resignations; department prior-rate window; whether engagement gaps are systematic; `comp_ratio` definition. All need HR/source confirmation.
 
 ## Post-Audit Validation Against Planted Issues
 
@@ -118,4 +118,5 @@ Full aggregate table: `planted_issue_validation.csv` (no employee-level data).
 - **negative_tenure**: Planted 4; audit found 4. No join-date column exists in the sheet, so the observation-date-vs-join-date relationship cannot be confirmed from available information.
 - **duplicate_records**: Planted 6 appended copies. Full-row duplicates: 0 (copies carry a fresh row_id, so the initial '0 exact duplicates' statement was technically correct but incomplete). Business-record duplicates excluding row_id: 6 extra rows in 6 groups, matching all 6 planted cases. Initial audit noted 6 repeated employee IDs but did not run the business-field comparison; added post-validation. Repeated IDs alone were rightly not treated as proof.
 
-*Artifacts: `column_profile.csv`, `data_dictionary.csv`, `missing_values.csv`, `outlier_summary.csv`, `outlier_details.csv`, `target_distribution.csv`, `leakage_register.csv`, `decision_register.csv`, `duplicate_review.csv`, `invalid_values.csv`, `data_quality_issue_details.csv`, `planted_issue_validation.csv` (after validation), `audit_summary.md`, `figures/`.*
+*Artifacts: `column_profile.csv`, `data_dictionary.csv`, `missing_values.csv`, `outlier_summary.csv`, `target_distribution.csv`, `leakage_register.csv`, `decision_register.csv`, `duplicate_review.csv`, `invalid_values.csv`, `planted_issue_validation.csv` (after validation), `audit_summary.md`, `figures/`.*
+*Record-level detail files (`outlier_details.csv`, `data_quality_issue_details.csv`) are generated locally alongside this report and intentionally excluded from version control.*

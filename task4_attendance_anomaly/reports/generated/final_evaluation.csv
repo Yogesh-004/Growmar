@@ -1,0 +1,2 @@
+threshold,n_records,n_flagged,flagged_pct,n_injected,n_caught,n_missed,catch_rate,n_normal,n_false_alarms,false_alarm_rate,precision,f1,pool,threshold_source
+0.0004180423345858623,1689,170,10.065127294256957,102,59,43,0.5784313725490197,1587,111,0.06994328922495274,0.34705882352941175,0.4338235294117647,final,frozen from calibration

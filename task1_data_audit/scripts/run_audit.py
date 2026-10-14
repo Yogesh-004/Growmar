@@ -189,9 +189,9 @@ def build_decision_register(
         },
         {
             "decision_id": "D05",
-            "status": "Working target - Task 3 confirmation needed",
+            "status": "Confirmed by project owner",
             "area": "target",
-            "decision": f"Use {target_col or 'confirmed target'} as the primary Task 3 label after confirming semantics",
+            "decision": f"Use {target_col or 'confirmed target'} as the Task 3 label (confirmed by project owner; working target at audit time)",
             "reason": "Binary 0/1 field with documented leaver meaning; class imbalance requires stratified handling.",
             "task2_rule": "Stratified splits; report precision/recall/AUC rather than accuracy alone.",
         },
@@ -636,7 +636,8 @@ def build_final_report(
             f"A model that always predicts 'stayed' would look about {(100 - positive_rate):.1f}% accurate "
             "while finding zero leavers — so accuracy alone would mislead us, and later evaluation must use "
             "recall, precision and ranking quality with stratified splits. "
-            "`left_within_12m` is our working target only; formal Task 3 approval is still open."
+            "`left_within_12m` was our working target at audit time; the project owner has since "
+            "confirmed it as the Task 3 target."
         )
     else:
         target_para = "No target column could be confirmed, so no prevalence is reported rather than guessed."
@@ -741,10 +742,11 @@ The table above is the handoff: Task 2 must implement these rules in a reusable,
 
 ## 9. Open questions
 
-Working target vs formal Task 3 approval; canonical location list; causes of negatives, out-of-range shares, attendance above 1 and pre-observation resignations; department prior-rate window; whether engagement gaps are systematic; `comp_ratio` definition. All need HR/source confirmation.
+Target confirmation — resolved (`left_within_12m` confirmed by the project owner for Task 3); canonical location list; causes of negatives, out-of-range shares, attendance above 1 and pre-observation resignations; department prior-rate window; whether engagement gaps are systematic; `comp_ratio` definition. All need HR/source confirmation.
 
 {validation_section}
-*Artifacts: `column_profile.csv`, `data_dictionary.csv`, `missing_values.csv`, `outlier_summary.csv`, `outlier_details.csv`, `target_distribution.csv`, `leakage_register.csv`, `decision_register.csv`, `duplicate_review.csv`, `invalid_values.csv`, `data_quality_issue_details.csv`, `planted_issue_validation.csv` (after validation), `audit_summary.md`, `figures/`.*
+*Artifacts: `column_profile.csv`, `data_dictionary.csv`, `missing_values.csv`, `outlier_summary.csv`, `target_distribution.csv`, `leakage_register.csv`, `decision_register.csv`, `duplicate_review.csv`, `invalid_values.csv`, `planted_issue_validation.csv` (after validation), `audit_summary.md`, `figures/`.*
+*Record-level detail files (`outlier_details.csv`, `data_quality_issue_details.csv`) are generated locally alongside this report and intentionally excluded from version control.*
 """
 
 

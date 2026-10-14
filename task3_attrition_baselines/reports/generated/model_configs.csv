@@ -1,0 +1,6 @@
+name,model,setting
+dummy_stays,DummyClassifier,"strategy=constant, constant=0 (always predicts stays)"
+logreg,LogisticRegression,"solver=lbfgs, max_iter=5000, C=1.0, unweighted"
+logreg_balanced,LogisticRegression,"solver=lbfgs, max_iter=5000, C=1.0, class_weight=balanced"
+tree,DecisionTreeClassifier,"max_depth=4, unweighted (deliberately shallow)"
+tree_balanced,DecisionTreeClassifier,"max_depth=4, class_weight=balanced (deliberately shallow)"

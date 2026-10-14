@@ -24,6 +24,8 @@ __pycache__/
 # (aggregate summaries such as invalid_values.csv remain committed).
 task1_data_audit/reports/generated/outlier_details.csv
 task1_data_audit/reports/generated/data_quality_issue_details.csv
+# Row-level anomaly scores stay local; threshold summaries are committed.
+task4_attendance_anomaly/reports/generated/scored_final.csv
 
 # Secrets
 .env
