@@ -8,7 +8,7 @@
 
 Each row is one employee observed on one observation date; the label records whether that person left during the following 12 months (meaning inferred from column patterns — please confirm). Only `attrition_dataset` was read explicitly; links were not opened and the answer key stayed sealed during the independent audit (see the validation appendix for the later authorized comparison). The sheet holds 42 columns: employee attributes, work patterns, two ID columns, the label, and five post-outcome fields. Full inventory: `column_profile.csv`, `data_dictionary.csv`.
 
-![Missing values](figures/missingness_top20.png)
+![Missing values](generated/figures/missingness_top20.png)
 
 ## 2. Executive summary
 
@@ -46,15 +46,15 @@ Two screens ran on `annual_fixed_pay` (pay/year), `avg_hours_worked_3m` (hours/d
 
 Pay flags are mostly legitimate high earners; hours cluster near 8.7 with one implausible ~1.8-hour value; tenure includes four impossible negatives. A flag means "investigate", never automatic deletion — the four negatives and similar rule-breakers are **suspected data errors**, the rest are ordinary statistical extremes. Every flagged record, with thresholds, direction and business-range verdict, is in `outlier_details.csv`.
 
-![Outlier comparison](figures/outlier_method_comparison.png)
+![Outlier comparison](generated/figures/outlier_method_comparison.png)
 
-![Salary](figures/dist_salary.png) ![Hours](figures/dist_hours.png) ![Tenure](figures/dist_tenure.png)
+![Salary](generated/figures/dist_salary.png) ![Hours](generated/figures/dist_hours.png) ![Tenure](generated/figures/dist_tenure.png)
 
 ## 5. Attrition and class imbalance
 
 Our working target is `left_within_12m`: 1 means the employee left within 12 months after the observation date. 349 of 2,389 employees left (14.61%); 2,040 stayed. Roughly one in seven employees left. A model that always predicts 'stayed' would look about 85.4% accurate while finding zero leavers — so accuracy alone would mislead us, and later evaluation must use recall, precision and ranking quality with stratified splits. `left_within_12m` was our working target at audit time; the project owner has since confirmed it as the Task 3 target.
 
-![Target distribution](figures/target_distribution.png)
+![Target distribution](generated/figures/target_distribution.png)
 
 ## 6. Data leakage
 

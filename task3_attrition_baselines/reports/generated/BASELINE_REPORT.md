@@ -4,7 +4,7 @@
 
 ## 1. Executive summary
 
-We compared five prespecified baselines for predicting who leaves: a dummy that always predicts "stays", logistic regression (plain and class-weighted), and a shallow depth-4 decision tree (plain and class-weighted). Selection rule (fixed before seeing test data): highest cross-validated leaver recall, tie-break F1. Winner: **logreg_balanced**. On the locked test set it found 60% of leavers at 25% precision (AUC 0.671). These are starting baselines for comparison, not production-ready models.
+Compared five prespecified baselines for predicting who leaves: a dummy that always predicts "stays", logistic regression (plain and class-weighted), and a shallow depth-4 decision tree (plain and class-weighted). Selection rule (fixed before seeing test data): highest cross-validated leaver recall, tie-break F1. Winner: **logreg_balanced**. On the locked test set it found 60% of leavers at 25% precision (AUC 0.671). These are starting baselines for comparison, not production-ready models.
 
 ## 2. Dataset and target definition
 
